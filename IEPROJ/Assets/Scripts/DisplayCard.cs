@@ -33,8 +33,6 @@ public class DisplayCard : MonoBehaviour
     [SerializeField]
     private Image artImage;
 
-    public bool cardBack;
-    public static bool staticCardBack;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +54,5 @@ public class DisplayCard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        staticCardBack = this.cardBack;
     }
 }
