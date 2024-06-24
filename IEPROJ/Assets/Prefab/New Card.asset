@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e993bc710f556c9468bb2c6e5df297a1, type: 3}
   m_Name: New Card
   m_EditorClassIdentifier: 
-  cardName: 
-  cardType: 
-  cardDescription: 
-  cardCost: 0
+  cardName: Card4
+  cardType: Summon
+  cardDescription: N/A
+  cardCost: 1
+  cardSprite: {fileID: 0}
