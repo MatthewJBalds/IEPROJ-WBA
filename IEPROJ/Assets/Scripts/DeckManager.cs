@@ -8,8 +8,7 @@ public class DeckManager : MonoBehaviour
     public static DeckManager Instance;
     [SerializeField]
     private List<Card> deck = new List<Card>();
-    [SerializeField]
-    private GameObject cardBack;
+    public GameObject cardInDeck;
 
     void Awake()
     {
@@ -24,6 +23,10 @@ public class DeckManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        for(int i = 0; i < 8; i++)
+        {
+            deck[i] = CardDatabase.CardsDatabase[i];
+        }
         PlayCards();
     }
 
@@ -37,8 +40,8 @@ public class DeckManager : MonoBehaviour
         Shuffle(deck);
         foreach (Card card in deck)
         {
-            card.CardBack = cardBack;
-            print(card.CardName);
+            //card.CardBack = cardBack;
+            print(card.cardName);
         }
         Deal();
 
@@ -66,8 +69,8 @@ public class DeckManager : MonoBehaviour
         foreach (Card card in deck)
         {
 
-            card.Position = new Vector3(card.Position.x, card.Position.y, card.Position.z - zOffset);
-            GameObject newCard = Instantiate(cardBack, card.Position, Quaternion.identity);
+            //card.Position = new Vector3(card.Position.x, card.Position.y, card.Position.z - zOffset);
+            //GameObject newCard = Instantiate(cardInDeck, card.Position, Quaternion.identity);
 
             zOffset += 0.03f;
         }

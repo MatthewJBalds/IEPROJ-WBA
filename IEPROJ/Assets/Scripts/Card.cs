@@ -1,37 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Card : MonoBehaviour
+[Serializable]
+public class Card
 {
-    private GameObject cardBack;
-    private Vector3 position;
-    [SerializeField]
-    private string cardType;
-    [SerializeField]
-    private string description;
-    [SerializeField]
-    private string cardName;
+    public string cardType;
+    public string description;
+    public string cardName;
+    public int cardID;
+    public int cost;
+    public Sprite artwork;
 
-    public Vector3 Position
+
+    private void Start()
     {
-        get { return position; }
-        set { position = value; }
     }
-    public GameObject CardBack
+    public Card(int cardID,int cost,string cardType, string description, string name, Sprite artwork)
     {
-        get { return cardBack; }
-        set { cardBack = value; }
-    }
-    public string CardName
-    {
-        get { return cardName; }
-    }
-    public Card(string cardType, string description, string name)
-    {
+        this.cardID = cardID;
         this.cardType = cardType;
         this.description = description;
         this.cardName = name;
-        this.position = this.transform.position;
+        this.cost = cost;
+        this.artwork = artwork;
     }
+
 }
