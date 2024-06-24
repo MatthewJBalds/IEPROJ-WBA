@@ -10,12 +10,12 @@ public class DropZone : MonoBehaviour,IPointerEnterHandler, IDropHandler, IPoint
 
     }
     public void OnDrop(PointerEventData eventData) {
-        //Draggable drag = eventData.pointerDrag.GetComponent<Draggable>();
+        Draggable drag = eventData.pointerDrag.GetComponent<Draggable>();
 
-        //if (drag != null)
-        //{
-        //    drag.parentToReturnTo = this.transform;
-        //}
+        if (drag != null)
+        {
+            drag.parentToReturnTo = this.transform;
+        }
     }
     public void OnPointerExit(PointerEventData eventData) { 
     
