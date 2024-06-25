@@ -486,9 +486,10 @@ GameObject:
   - component: {fileID: 356445254951290929}
   - component: {fileID: 4497024452561274641}
   - component: {fileID: 7075226000765533373}
+  - component: {fileID: 3334693932508895954}
   m_Layer: 5
   m_Name: Card
-  m_TagString: Untagged
+  m_TagString: Clone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -606,6 +607,8 @@ MonoBehaviour:
   typeText: {fileID: 7677344268356029615}
   costText: {fileID: 3984092934822382424}
   artImage: {fileID: 4468657179864194109}
+  Hand: {fileID: 0}
+  numOfCardInDeck: 0
 --- !u!114 &4497024452561274641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,6 +621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc29ef8eeb69ac344b5cc1480a48efc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentToReturnTo: {fileID: 0}
 --- !u!225 &7075226000765533373
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -630,3 +634,17 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3334693932508895954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483860168993046292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869ea2bb88a5e54409ed02c8cef2b4d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hand: {fileID: 0}
+  HandCard: {fileID: 7483860168993046292}

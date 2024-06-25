@@ -9,6 +9,11 @@ public class DeckManager : MonoBehaviour
     [SerializeField]
     private List<Card> deck = new List<Card>();
     public GameObject cardInDeck;
+    public static List<Card> staticDeck = new List<Card>();
+    public static int deckSize;
+
+    public GameObject[] Clones;
+    public GameObject Hand;
 
     void Awake()
     {
@@ -23,7 +28,8 @@ public class DeckManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < 8; i++)
+        deckSize = 8;
+        for (int i = 0; i < deckSize; i++)
         {
             deck[i] = CardDatabase.CardsDatabase[i];
         }
@@ -33,7 +39,7 @@ public class DeckManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        staticDeck = deck;
     }
     private void PlayCards()
     {
@@ -64,15 +70,16 @@ public class DeckManager : MonoBehaviour
 
     private void Deal()
     {
-        float zOffset = 0.03f;
+        StartCoroutine(StartGame());
+    }
 
-        foreach (Card card in deck)
+    IEnumerator StartGame()
+    {
+        for(int i =0; i < 4; i++)
         {
+            yield return new WaitForSeconds(1);
 
-            //card.Position = new Vector3(card.Position.x, card.Position.y, card.Position.z - zOffset);
-            //GameObject newCard = Instantiate(cardInDeck, card.Position, Quaternion.identity);
-
-            zOffset += 0.03f;
+            Instantiate(cardInDeck, transform.position,transform.rotation);
         }
     }
 }

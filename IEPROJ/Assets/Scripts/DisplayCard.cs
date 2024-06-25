@@ -33,10 +33,21 @@ public class DisplayCard : MonoBehaviour
     [SerializeField]
     private Image artImage;
 
+    public GameObject Hand;
+    public int numOfCardInDeck;
+
     // Start is called before the first frame update
     void Start()
     {
+        numOfCardInDeck = DeckManager.deckSize;
         displayCard[0] = CardDatabase.CardsDatabase[displayID];
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
         this.ID = displayCard[0].cardID;
         this.displayName = displayCard[0].cardName;
         this.displayCost = displayCard[0].cost;
@@ -49,10 +60,15 @@ public class DisplayCard : MonoBehaviour
         descriptionText.text = " " + this.displayDescription;
         costText.text = " " + this.displayCost;
         artImage.sprite = this.spriteImage;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        Hand = GameObject.Find("Hand");
+       
+        if(this.tag == "Clone")
+        {
+            displayCard[0] = DeckManager.staticDeck[numOfCardInDeck - 1];
+            numOfCardInDeck -= 1;
+            DeckManager.deckSize -= 1;
+            this.tag = "Untagged";
+        }
     }
 }
