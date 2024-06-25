@@ -77,7 +77,7 @@ public class DeckManager : MonoBehaviour
     {
         for(int i =0; i < 4; i++)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.3f);
 
             Instantiate(cardInDeck, transform.position,transform.rotation);
         }
