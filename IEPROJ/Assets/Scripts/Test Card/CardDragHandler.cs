@@ -25,6 +25,7 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
         {
             Vector3 spawnPosition = worldPosition + Vector3.up * spawnHeight;
             Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
+            Destroy(this.gameObject);
         }
     }
 
