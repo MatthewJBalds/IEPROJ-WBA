@@ -96,8 +96,15 @@ public class DeckManager : MonoBehaviour
     {
         if (deckSize == 5)
         {
-            Instantiate(cardInDeck, transform.position, transform.rotation);
+            StartCoroutine(WaitForDraw());
         }
+    }
+
+    IEnumerator WaitForDraw()
+    {
+        yield return new WaitForSeconds(0.3f);
+        Instantiate(cardInDeck, transform.position, transform.rotation);
+
     }
 
     public void MoveCard(int id)

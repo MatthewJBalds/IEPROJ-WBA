@@ -7,20 +7,26 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     public LayerMask groundLayer;
     public float spawnHeight = 10.0f;
 
+
     private Camera mainCamera;
 
     private void Start()
     {
         mainCamera = Camera.main;
     }
-
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+    }
     public void OnDrag(PointerEventData eventData)
     {
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         Vector3 worldPosition;
+
+
         if (TryGetWorldPosition(eventData.position, out worldPosition))
         {
             Vector3 spawnPosition = worldPosition + Vector3.up * spawnHeight;
@@ -43,6 +49,7 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
             worldPosition = hit.point;
             return true;
         }
+
 
         worldPosition = Vector3.zero;
         return false;

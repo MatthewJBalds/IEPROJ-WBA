@@ -7,7 +7,7 @@ public class DropZone : MonoBehaviour,IPointerEnterHandler, IDropHandler, IPoint
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
-
+        Debug.Log("Enter");
     }
     public void OnDrop(PointerEventData eventData) {
         Draggable drag = eventData.pointerDrag.GetComponent<Draggable>();
