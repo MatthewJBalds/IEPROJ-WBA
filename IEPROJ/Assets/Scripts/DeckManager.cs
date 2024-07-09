@@ -29,6 +29,8 @@ public class DeckManager : MonoBehaviour
     void Start()
     {
         EventManager.ExampleEvent += DrawCard;
+        EventManager.DeckEvent += RemoveAtStart;
+        EventManager.MoveCardEvent += MoveCard;
         deckSize = 8;
         for (int i = 0; i < deckSize; i++)
         {
@@ -45,7 +47,7 @@ public class DeckManager : MonoBehaviour
     }
     private void PlayCards()
     {
-        Shuffle(deck);
+        //Shuffle(deck);
         foreach (Card card in deck)
         {
             //card.CardBack = cardBack;
@@ -73,6 +75,7 @@ public class DeckManager : MonoBehaviour
     private void Deal()
     {
         StartCoroutine(StartGame());
+        
     }
 
     IEnumerator StartGame()
@@ -84,6 +87,11 @@ public class DeckManager : MonoBehaviour
             Instantiate(cardInDeck, transform.position,transform.rotation);
         }
     }
+
+    public void RemoveAtStart()
+    {
+        deck.RemoveAt(deck.Count - 1);
+    }
     public void DrawCard()
     {
         if (deckSize == 5)
@@ -91,8 +99,15 @@ public class DeckManager : MonoBehaviour
             Instantiate(cardInDeck, transform.position, transform.rotation);
         }
     }
+
+    public void MoveCard(int id)
+    {
+        deck.Insert(0,CardDatabase.CardsDatabase[id]);
+        Debug.Log(id);
+    }
     private void OnDisable()
     {
         EventManager.ExampleEvent -= DrawCard;
+        EventManager.DeckEvent -= RemoveAtStart;
     }
 }

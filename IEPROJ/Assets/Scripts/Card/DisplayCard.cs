@@ -15,8 +15,7 @@ public class DisplayCard : MonoBehaviour
     private string displayDescription;
     [SerializeField]
     private string displayName;
-    [SerializeField]
-    private int ID;
+    public int ID;
     [SerializeField]
     private int displayCost;
     [SerializeField]
@@ -68,6 +67,7 @@ public class DisplayCard : MonoBehaviour
             displayCard[0] = DeckManager.staticDeck[numOfCardInDeck - 1];
             numOfCardInDeck -= 1;
             DeckManager.deckSize -= 1;
+            EventManager.RemoveCard();
             this.tag = "Untagged";
         }
     }
