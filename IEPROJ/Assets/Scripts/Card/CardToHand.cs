@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardToHand : MonoBehaviour
@@ -20,6 +21,8 @@ public class CardToHand : MonoBehaviour
         HandCard.transform.localScale = Vector3.one;
         HandCard.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         HandCard.transform.eulerAngles = new Vector3(25,0,0);
+
+        
 
     }
 }

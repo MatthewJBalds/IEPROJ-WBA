@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 4545167158178030816}
   m_Layer: 5
   m_Name: Card 1
-  m_TagString: Untagged
+  m_TagString: Clone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -588,6 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc29ef8eeb69ac344b5cc1480a48efc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentToReturnTo: {fileID: 0}
 --- !u!225 &7075226000765533373
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -630,3 +631,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc29ef8eeb69ac344b5cc1480a48efc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentToReturnTo: {fileID: 0}

@@ -28,6 +28,7 @@ public class DeckManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        EventManager.ExampleEvent += DrawCard;
         deckSize = 8;
         for (int i = 0; i < deckSize; i++)
         {
@@ -40,6 +41,7 @@ public class DeckManager : MonoBehaviour
     void Update()
     {
         staticDeck = deck;
+      
     }
     private void PlayCards()
     {
@@ -78,8 +80,19 @@ public class DeckManager : MonoBehaviour
         for(int i =0; i < 4; i++)
         {
             yield return new WaitForSeconds(0.3f);
-
+            
             Instantiate(cardInDeck, transform.position,transform.rotation);
         }
+    }
+    public void DrawCard()
+    {
+        if (deckSize == 5)
+        {
+            Instantiate(cardInDeck, transform.position, transform.rotation);
+        }
+    }
+    private void OnDisable()
+    {
+        EventManager.ExampleEvent -= DrawCard;
     }
 }
