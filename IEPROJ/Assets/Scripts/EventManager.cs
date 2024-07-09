@@ -25,10 +25,13 @@ public class EventManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            ExampleEvent?.Invoke();
-        }
+    
+    }
+
+    public static void DrawCards()
+    {
+        ExampleEvent?.Invoke();
+
     }
 
     public static void RemoveCard()

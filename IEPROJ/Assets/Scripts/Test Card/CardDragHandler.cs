@@ -28,6 +28,7 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
             Destroy(this.gameObject);
             int id = this.gameObject.GetComponent<DisplayCard>().ID;
             DeckManager.deckSize += 1;
+            EventManager.DrawCards();
             EventManager.MoveCardToBottom(id);
         }
     }
