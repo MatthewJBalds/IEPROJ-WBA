@@ -5,57 +5,60 @@ using UnityEngine;
 public class ResourceZoneTrigger : MonoBehaviour
 {
     private Color m_oldColor = Color.white;
-    private GameObject objectToDestroy;
-    private Vector3 initialPosition;
-    private Quaternion initialRotation;
     private bool isPlayerInside = false;
+    public GameObject objectToSpawn; // Assign the prefab of the object to spawn in the Inspector
+    public Transform spawnPoint; // Assign the spawn point in the Inspector
 
     private void OnTriggerEnter(Collider other)
     {
         Renderer renderer = GetComponent<Renderer>();
         m_oldColor = renderer.material.color;
-        renderer.material.color = Color.cyan; //Change the area zone color to visualize that player is in the zone
+        renderer.material.color = Color.cyan; // Change the area zone color to visualize that player is in the zone
 
         // Check if the object that entered the trigger is the player
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Player entered the trigger zone.");
             isPlayerInside = true;
-            objectToDestroy = other.gameObject;
-            initialPosition = objectToDestroy.transform.position;
-            initialRotation = objectToDestroy.transform.rotation;
-            Invoke("DestroyObject", 3f);
+            StartSpawning();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GetComponent<Renderer>().material.color = m_oldColor; //Set color back to default
+        GetComponent<Renderer>().material.color = m_oldColor; // Set color back to default
 
         // Check if the object that exited the trigger is the player
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Player exited the trigger zone.");
             isPlayerInside = false;
-            CancelInvoke("DestroyObject");
-            RespawnObject();
+            StopSpawning();
         }
     }
 
-    private void DestroyObject()
+    private void StartSpawning()
     {
-        if (isPlayerInside && objectToDestroy != null)
-        {
-            Destroy(objectToDestroy);
-        }
+        Debug.Log("Started Spawning objects.");
+        InvokeRepeating("SpawnObject", 0f, 2f); // Start spawning immediately and repeat every 2 seconds
     }
 
-    private void RespawnObject()
+    private void StopSpawning()
     {
-        if (objectToDestroy == null)
+        Debug.Log("Stopped Spawning objects.");
+        CancelInvoke("SpawnObject");
+    }
+
+    private void SpawnObject()
+    {
+        if (isPlayerInside && objectToSpawn != null && spawnPoint != null)
         {
-            objectToDestroy = new GameObject("RespawnedObject");
-            objectToDestroy.transform.position = initialPosition;
-            objectToDestroy.transform.rotation = initialRotation;
-        
+            Debug.Log("Spawning an object.");
+            Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
+        }
+        else
+        {
+            Debug.LogWarning("Spawn conditions not met. isPlayerInside: " + isPlayerInside + ", objectToSpawn: " + objectToSpawn + ", spawnPoint: " + spawnPoint);
         }
     }
 }
