@@ -11,12 +11,13 @@ public class Card
     public int cardID;
     public int cost;
     public Sprite artwork;
+    //public GameObject cardPrefab; //[SEE] Card Casting under Player.
 
 
     private void Start()
     {
     }
-    public Card(int cardID,int cost,string cardType, string description, string name, Sprite artwork)
+    public Card(int cardID,int cost, string cardType, string description, string name, Sprite artwork) //GameObject cardPrefab)
     {
         this.cardID = cardID;
         this.cardType = cardType;
@@ -24,6 +25,7 @@ public class Card
         this.cardName = name;
         this.cost = cost;
         this.artwork = artwork;
+        //this.cardPrefab = cardPrefab;
     }
 
 }

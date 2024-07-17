@@ -5,6 +5,8 @@ using UnityEngine;
 public class CardDatabase : MonoBehaviour
 {
     public static List<Card> CardsDatabase = new List<Card>();
+    //public GameObject[] cardPrefabs; //[SEE] Card Casting under Player.
+
     // Start is called before the first frame update
     void Awake()
     {
