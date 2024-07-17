@@ -6,14 +6,14 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     private int currentHealth;
 
-    private HealthBar healthBar;
+    public HealthBar healthBar;
     //[TODO] CREATE HEALTH BAR UI SLIDER; later on for stylized vers.
     //public Slider healthBar;
 
     void Start()
     {
         currentHealth = maxHealth;
-        healthBar.setMaxHeatlh(currentHealth);
+        healthBar.setMaxHealth(currentHealth);
         //healthBar.maxValue = maxHealth;
         //healthBar.value = currentHealth;
     }
