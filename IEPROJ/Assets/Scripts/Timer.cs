@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,11 @@ public class Timer : MonoBehaviour
     private Text timeText;
     private float timeValue = 180f;
 
+
+    private void Start()
+    {
+        EventManager.EndTimer += EndGame;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -22,9 +28,13 @@ public class Timer : MonoBehaviour
         }
 
         DisplayTime(timeValue);
+        EndGame(timeValue);
 
     }
-
+    private void EndGame(float timeValue)
+    {
+        //PUT END SCREEN
+    }
     private void DisplayTime(float timeValueToDisplay)
     {
         float minutes = Mathf.FloorToInt(timeValueToDisplay / 60f);

@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float groundDrag;
     private bool grounded;
+
+    private float turnSmoothTime = 0.1f;
+    private float turnSmoothVelocity;
     // Start is called before the first frame update
     private void Start()
     {
@@ -55,8 +58,19 @@ public class PlayerController : MonoBehaviour
 
     private void movePlayer()
     {
-        this.movementDir = this.orientation.forward * this.vertical + orientation.right * this.horizontal;
-        this.rb.AddForce(this.movementDir.normalized * speed * 10f, ForceMode.Force);
+
+        Vector3 direction = new Vector3(this.horizontal,0,this.vertical).normalized;
+
+        if(direction.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(direction.x,direction.z) * Mathf.Rad2Deg + orientation.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y,targetAngle,ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            this.movementDir = Quaternion.Euler(0f,targetAngle,0f) * Vector3.forward;
+            this.rb.AddForce(this.movementDir.normalized * speed * 10f, ForceMode.Force);
+        }
+       
     }
 
     private void SpeedControl()

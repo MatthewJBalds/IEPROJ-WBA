@@ -13,6 +13,8 @@ public class EventManager : MonoBehaviour
 
     public static event Action<int> MoveCardEvent;
 
+    public static event Action<float> EndTimer;
+
     private void Awake()
     {
         if (Instance == null)
@@ -42,5 +44,10 @@ public class EventManager : MonoBehaviour
     public static void MoveCardToBottom(int i)
     {
         MoveCardEvent?.Invoke(i);
+    }
+
+    public static void EndGame(float f)
+    {
+        EndTimer?.Invoke(f);
     }
 }
