@@ -2,58 +2,71 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float turnSpeed = 360f;
-    public float gravity = -9.81f;
-    public float groundCheckDistance = 0.4f;
-    public LayerMask groundMask;
+    [SerializeField]
+    private float playerHeight;
+    [SerializeField]
+    private LayerMask whatIsGround;
 
-    private CharacterController characterController;
-    private Vector3 velocity;
-    private bool isGrounded;
+    [SerializeField]
+    private float speed;
+    private float horizontal;
+    private float vertical;
+    Vector3 movementDir = Vector3.zero;
+    [SerializeField]
+    private Transform orientation;
+    private Rigidbody rb;
 
-    void Start()
+    [SerializeField]
+    private float groundDrag;
+    private bool grounded;
+    // Start is called before the first frame update
+    private void Start()
     {
-        characterController = GetComponent<CharacterController>();
-        if (characterController == null)
-        {
-            Debug.LogError("CharacterController component missing from player object.");
-        }
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
     }
 
-    void Update()
+    // Update is called once per frame
+    private void Update()
     {
-        MovePlayer();
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 2f, whatIsGround);
+
+        this.SpeedControl();
+        this.ProcessInput();
+
+        if (grounded)
+        {
+            rb.drag = groundDrag;
+        }
+        else
+            rb.drag = 0;
     }
 
-    void MovePlayer()
+    private void FixedUpdate()
     {
-        isGrounded = Physics.CheckSphere(transform.position + characterController.center, groundCheckDistance, groundMask);
+        this.movePlayer();
+    }
 
-        if (isGrounded && velocity.y < 0)
+    private void ProcessInput()
+    {
+        this.horizontal = Input.GetAxisRaw("Horizontal");
+        this.vertical = Input.GetAxisRaw("Vertical");
+    }
+
+    private void movePlayer()
+    {
+        this.movementDir = this.orientation.forward * this.vertical + orientation.right * this.horizontal;
+        this.rb.AddForce(this.movementDir.normalized * speed * 10f, ForceMode.Force);
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+        if (flatVelocity.magnitude > speed)
         {
-            velocity.y = -2f; 
-        }
-
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
-
-        Vector3 move = new Vector3(moveX, 0, moveZ);
-        if (move.magnitude > 1)
-        {
-            move.Normalize();
-        }
-
-        Vector3 moveDirection = transform.forward * move.z + transform.right * move.x;
-        characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
-
-        velocity.y += gravity * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime);
-
-        if (move != Vector3.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, turnSpeed * Time.deltaTime);
+            Vector3 limitedVelocity = flatVelocity.normalized * speed;
+            rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
         }
     }
 }
