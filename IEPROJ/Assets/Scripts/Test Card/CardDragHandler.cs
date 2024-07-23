@@ -16,15 +16,20 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         mainCamera = Camera.main;
         EventManager.TrackMana += UpdateMana;
+        this.manaPool = 0;
     }
     private void OnDisable()
     {
         EventManager.TrackMana -= UpdateMana;
     }
 
+    private void Update()
+    {
+        Debug.Log("Update: " + manaPool);
+    }
     private void UpdateMana(int mana)
     {
-        this.manaPool += mana;
+        this.manaPool = mana;
         Debug.Log("Mana Added: " + manaPool);
     }
     public void OnBeginDrag(PointerEventData eventData)
@@ -42,6 +47,7 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
         if (TryGetWorldPosition(eventData.position, out worldPosition))
         {
+
             Vector3 spawnPosition = worldPosition + Vector3.up * spawnHeight;
 
             int id = this.gameObject.GetComponent<DisplayCard>().ID;
@@ -49,44 +55,42 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
             Debug.Log("Mana: " + manaPool);
             Debug.Log("Cost: " + this.gameObject.GetComponent<DisplayCard>().displayCost);
             int cost = this.gameObject.GetComponent<DisplayCard>().displayCost;
-
-            if (manaPool >= cost)
+  
+            if (this.manaPool >= cost)
             {
-
-                Debug.Log("The Id is " + id);
                 switch (id)
                 {
                     case 0:
                         Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
-                        EventManager.ReduceMana(this.gameObject.GetComponent<DisplayCard>().displayCost);
+                        EventManager.ReduceMana(cost);
                         break;
                     case 1:
                         Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
-                        EventManager.ReduceMana(this.gameObject.GetComponent<DisplayCard>().displayCost);
+                        EventManager.ReduceMana(cost);
                         break;
                     case 2:
                         Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
-                        EventManager.ReduceMana(this.gameObject.GetComponent<DisplayCard>().displayCost);
+                        EventManager.ReduceMana(cost);
                         break;
                     case 3:
                         Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
-                        EventManager.ReduceMana(this.gameObject.GetComponent<DisplayCard>().displayCost);
+                        EventManager.ReduceMana(cost);
                         break;
                     case 4:
                         Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
-                        EventManager.ReduceMana(this.gameObject.GetComponent<DisplayCard>().displayCost);
+                        EventManager.ReduceMana(cost);
                         break;
                     case 5:
                         Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
-                        EventManager.ReduceMana(this.gameObject.GetComponent<DisplayCard>().displayCost);
+                        EventManager.ReduceMana(cost);
                         break;
                     case 6:
                         Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
-                        EventManager.ReduceMana(this.gameObject.GetComponent<DisplayCard>().displayCost);
+                        EventManager.ReduceMana(cost);
                         break;
                     case 7:
                         Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
-                        EventManager.ReduceMana(this.gameObject.GetComponent<DisplayCard>().displayCost);
+                        EventManager.ReduceMana(cost);
                         break;
                 }
                 

@@ -13,7 +13,7 @@ public class DisplayCard : MonoBehaviour
     private string displayType;
     [SerializeField]
     private string displayDescription;
- 
+    
     public string displayName;
     public int ID;
     
