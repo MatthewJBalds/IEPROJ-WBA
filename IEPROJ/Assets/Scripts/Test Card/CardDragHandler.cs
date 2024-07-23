@@ -6,6 +6,9 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     public GameObject fireballPrefab;
     public LayerMask groundLayer;
     public float spawnHeight = 10.0f;
+    public Player player;
+
+    private int manaPool;
 
 
     private Camera mainCamera;
@@ -13,6 +16,12 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     private void Start()
     {
         mainCamera = Camera.main;
+        manaPool = player.manaPool;
+    }
+
+    private void Update()
+    {
+        manaPool = player.manaPool;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -27,16 +36,39 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
         Vector3 worldPosition;
 
 
+
         if (TryGetWorldPosition(eventData.position, out worldPosition))
         {
             Vector3 spawnPosition = worldPosition + Vector3.up * spawnHeight;
-            Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
-            Destroy(this.gameObject);
+
+            string CardId = this.gameObject.GetComponent<DisplayCard>().displayName;
+
+            
+
+            if (this.gameObject.GetComponent<DisplayCard>().displayCost <= player.manaPool)
+            {
+                
+                if (CardId == "Fireball")
+                {
+                    Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
+                    EventManager.ReduceMana(this.gameObject.GetComponent<DisplayCard>().displayCost);
+
+                    Debug.Log(manaPool);
+                }
+
+                
+            }
+
             int id = this.gameObject.GetComponent<DisplayCard>().ID;
             DeckManager.deckSize += 1;
             EventManager.DrawCards();
             EventManager.MoveCardToBottom(id);
+            Destroy(this.gameObject);
+
         }
+
+       
+        
     }
 
     private bool TryGetWorldPosition(Vector2 screenPosition, out Vector3 worldPosition)

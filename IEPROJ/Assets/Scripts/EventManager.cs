@@ -15,6 +15,8 @@ public class EventManager : MonoBehaviour
 
     public static event Action<float> EndTimer;
 
+    public static event Action<int> UseMana;
+
     private void Awake()
     {
         if (Instance == null)
@@ -49,5 +51,10 @@ public class EventManager : MonoBehaviour
     public static void EndGame(float f)
     {
         EndTimer?.Invoke(f);
+    }
+
+    public static void ReduceMana(int i)
+    {
+        UseMana?.Invoke(i);
     }
 }

@@ -13,11 +13,12 @@ public class DisplayCard : MonoBehaviour
     private string displayType;
     [SerializeField]
     private string displayDescription;
-    [SerializeField]
-    private string displayName;
+ 
+    public string displayName;
     public int ID;
-    [SerializeField]
-    private int displayCost;
+    
+    public int displayCost;
+
     [SerializeField]
     private Sprite spriteImage;
 
