@@ -9,7 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/StartScreen.unity
     guid: 5bc8024f13322474782467c0347f6f4e
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Loading Screen.unity
+    guid: 9b00001c8041e554296241d03961054a
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 616e4eed85ea9e74494904be6f4dca70
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
