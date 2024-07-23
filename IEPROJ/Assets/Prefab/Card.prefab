@@ -666,3 +666,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   spawnHeight: 10
+  player: {fileID: 3244372936078224071, guid: 14d7adab1c8a5464eb3fbcbdb173c657, type: 3}

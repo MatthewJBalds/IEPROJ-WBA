@@ -10,7 +10,7 @@ public class CardDatabase : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        CardsDatabase.Add(new Card(0, 1,"Summon","N/A","Card1", Resources.Load<Sprite>("tree")));
+        CardsDatabase.Add(new Card(0, 5,"Spell","N/A","Fireball", Resources.Load<Sprite>("tree")));
         CardsDatabase.Add(new Card(1, 1, "Spell", "N/A", "Card2", Resources.Load<Sprite>("tree")));
         CardsDatabase.Add(new Card(2, 1,"Summon", "N/A", "Card3", Resources.Load<Sprite>("tree")));
         CardsDatabase.Add(new Card(3, 1,"Spell", "N/A", "Card4", Resources.Load<Sprite>("tree")));
