@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
@@ -13,7 +14,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
 
-        
+        //PhotonView view;
+
         private void Start()
         {
             // get the transform of the main camera
@@ -30,11 +32,21 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<ThirdPersonCharacter>();
+
+            //view = GetComponent<PhotonView>();
         }
 
 
         private void Update()
         {
+            //if (view.IsMine)
+            //{
+            //    if (!m_Jump)
+            //    {
+            //        m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+            //    }
+            //}
+
             if (!m_Jump)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
