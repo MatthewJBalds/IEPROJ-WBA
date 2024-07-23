@@ -17,11 +17,14 @@ public class Player : MonoBehaviour
         EventManager.UseMana += RemoveMana;
         manaBar.setMaxMana(manaPool);
     }
+    private void Update()
+    {
+        EventManager.trackMana(manaPool);
+    }
     public void AddMana(int amount)
     {
         manaPool += amount;
         manaBar.setMana(manaPool);
-        EventManager.trackMana(manaPool);
         Debug.Log("Mana added. Current mana: " + manaPool);
     }
 
@@ -33,7 +36,6 @@ public class Player : MonoBehaviour
             manaPool = 0;
         }
         manaBar.setMana(manaPool);
-        EventManager.trackMana(manaPool);
         Debug.Log("Mana removed. Current mana: " + manaPool);
     }
 }

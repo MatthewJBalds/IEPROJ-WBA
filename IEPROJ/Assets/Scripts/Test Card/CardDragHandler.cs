@@ -16,16 +16,10 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         mainCamera = Camera.main;
         EventManager.TrackMana += UpdateMana;
-        this.manaPool = 0;
     }
     private void OnDisable()
     {
         EventManager.TrackMana -= UpdateMana;
-    }
-
-    private void Update()
-    {
-        Debug.Log("Update: " + manaPool);
     }
     private void UpdateMana(int mana)
     {
@@ -55,7 +49,7 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
             Debug.Log("Mana: " + manaPool);
             Debug.Log("Cost: " + this.gameObject.GetComponent<DisplayCard>().displayCost);
             int cost = this.gameObject.GetComponent<DisplayCard>().displayCost;
-  
+            
             if (this.manaPool >= cost)
             {
                 switch (id)
@@ -85,11 +79,11 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
                         EventManager.ReduceMana(cost);
                         break;
                     case 6:
-                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
+                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);             
                         EventManager.ReduceMana(cost);
                         break;
                     case 7:
-                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
+                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);                 
                         EventManager.ReduceMana(cost);
                         break;
                 }
