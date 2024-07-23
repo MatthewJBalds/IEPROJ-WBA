@@ -9,16 +9,25 @@ public class ManaBar : MonoBehaviour
     public Text manaText;
 
     private int maxMana;
+    private int currentMana;
     public void setMaxMana(int mana)
     {
         maxMana = mana;
+        currentMana = mana;
         manaText.text = string.Format("{0:0}/{1:0}", mana, maxMana);
         this.slider.maxValue = mana;
         this.slider.value = mana;
     }
     public void setMana(int mana)
     {
+        currentMana = mana;
+        if (currentMana >= maxMana)
+        {
+            maxMana = currentMana;
+            this.slider.maxValue = mana;
+        }
         manaText.text = string.Format("{0:0}/{1:0}", mana, maxMana);
+        
         this.slider.value = mana;
     }
 }
