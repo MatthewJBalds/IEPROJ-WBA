@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class ResourceZoneTrigger : MonoBehaviour
 {
-    private Color m_oldColor = Color.white;
     private bool isPlayerInside = false;
+    private int numSpawned = 0; // Number of mana objects spawned in the current batch
+    private bool isFirstSpawn = true; // Flag to check if it's the first spawn
     public GameObject objectToSpawn; // Assign the prefab of the object to spawn in the Inspector
-    public Transform spawnPoint; // Assign the spawn point in the Inspector
+    public int spawnPoolSize = 10; // Number of objects to spawn in each pool
 
     private void OnTriggerEnter(Collider other)
     {
-        Renderer renderer = GetComponent<Renderer>();
-        m_oldColor = renderer.material.color;
-        renderer.material.color = Color.cyan; // Change the area zone color to visualize that player is in the zone
-
         // Check if the object that entered the trigger is the player
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player entered the trigger zone.");
             isPlayerInside = true;
-            StartSpawning();
+
+            // Check if it's the first spawn or all previous mana objects are collected
+            if (isFirstSpawn || numSpawned >= spawnPoolSize)
+            {
+                StartSpawning();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GetComponent<Renderer>().material.color = m_oldColor; // Set color back to default
-
         // Check if the object that exited the trigger is the player
         if (other.gameObject.CompareTag("Player"))
         {
@@ -40,25 +40,60 @@ public class ResourceZoneTrigger : MonoBehaviour
     private void StartSpawning()
     {
         Debug.Log("Started Spawning objects.");
-        InvokeRepeating("SpawnObject", 0f, 2f); // Start spawning immediately and repeat every 2 seconds
+        isFirstSpawn = false; // Reset the first spawn flag
+        SpawnObjectPool();
     }
 
     private void StopSpawning()
     {
         Debug.Log("Stopped Spawning objects.");
-        CancelInvoke("SpawnObject");
+        CancelInvoke("SpawnObjectPool");
     }
 
-    private void SpawnObject()
+    private void SpawnObjectPool()
     {
-        if (isPlayerInside && objectToSpawn != null && spawnPoint != null)
+        if (isPlayerInside && objectToSpawn != null)
         {
-            Debug.Log("Spawning an object.");
-            Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
+            Debug.Log("Spawning a pool of objects.");
+            for (int i = 0; i < spawnPoolSize; i++)
+            {
+                Vector3 randomPosition = GetRandomPositionInZone();
+                Instantiate(objectToSpawn, randomPosition, Quaternion.identity);
+            }
+            numSpawned = 0; // Reset spawned count for the new batch
         }
         else
         {
-            Debug.LogWarning("Spawn conditions not met. isPlayerInside: " + isPlayerInside + ", objectToSpawn: " + objectToSpawn + ", spawnPoint: " + spawnPoint);
+            Debug.LogWarning("Spawn conditions not met. isPlayerInside: " + isPlayerInside + ", objectToSpawn: " + objectToSpawn);
         }
+    }
+
+    public void ManaObjectCollected()
+    {
+        numSpawned++;
+        Debug.Log("Mana object collected. Count: " + numSpawned);
+
+        // Check if all mana objects in the current batch have been collected
+        if (numSpawned >= spawnPoolSize)
+        {
+            if (isPlayerInside)
+            {
+                SpawnObjectPool(); // Trigger spawning of the next batch
+            }
+        }
+    }
+
+    private Vector3 GetRandomPositionInZone()
+    {
+        Collider zoneCollider = GetComponent<Collider>();
+        Vector3 zoneCenter = zoneCollider.bounds.center;
+        Vector3 zoneSize = zoneCollider.bounds.size;
+
+        float randomX = Random.Range(zoneCenter.x - zoneSize.x / 2, zoneCenter.x + zoneSize.x / 2);
+        float randomZ = Random.Range(zoneCenter.z - zoneSize.z / 2, zoneCenter.z + zoneSize.z / 2);
+
+        Vector3 randomPosition = new Vector3(randomX, zoneCenter.y, randomZ);
+
+        return randomPosition;
     }
 }
