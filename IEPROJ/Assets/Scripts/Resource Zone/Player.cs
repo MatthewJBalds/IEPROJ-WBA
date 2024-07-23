@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     {
         manaPool += amount;
         manaBar.setMana(manaPool);
+        EventManager.trackMana(amount);
         Debug.Log("Mana added. Current mana: " + manaPool);
     }
 
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     {
         manaPool -= mana;
         manaBar.setMana(manaPool);
+        EventManager.trackMana(manaPool);
         Debug.Log("Mana removed. Current mana: " + manaPool);
     }
 }

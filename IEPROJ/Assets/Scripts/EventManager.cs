@@ -17,6 +17,8 @@ public class EventManager : MonoBehaviour
 
     public static event Action<int> UseMana;
 
+    public static event Action<int> TrackMana;
+
     private void Awake()
     {
         if (Instance == null)
@@ -56,5 +58,10 @@ public class EventManager : MonoBehaviour
     public static void ReduceMana(int i)
     {
         UseMana?.Invoke(i);
+    }
+
+    public static void trackMana(int i)
+    {
+        TrackMana?.Invoke(i);
     }
 }
