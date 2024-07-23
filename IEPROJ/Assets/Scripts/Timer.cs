@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
@@ -33,7 +34,8 @@ public class Timer : MonoBehaviour
     }
     private void EndGame(float timeValue)
     {
-        //PUT END SCREEN
+        if(timeValue == 0)
+            SceneManager.LoadScene("StartScreen");//PUT END SCREEN
     }
     private void DisplayTime(float timeValueToDisplay)
     {
