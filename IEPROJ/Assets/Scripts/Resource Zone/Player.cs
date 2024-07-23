@@ -30,6 +30,10 @@ public class Player : MonoBehaviour
     public void RemoveMana(int mana)
     {
         manaPool -= mana;
+        if(manaPool <= 0)
+        {
+            manaPool = 0;
+        }
         manaBar.setMana(manaPool);
         EventManager.trackMana(manaPool);
         Debug.Log("Mana removed. Current mana: " + manaPool);

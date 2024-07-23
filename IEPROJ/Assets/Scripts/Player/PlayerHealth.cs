@@ -22,6 +22,10 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         //healthBar.value = currentHealth;
+        if(currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
         healthBar.setHealth(currentHealth); 
 
         if (currentHealth <= 0)
