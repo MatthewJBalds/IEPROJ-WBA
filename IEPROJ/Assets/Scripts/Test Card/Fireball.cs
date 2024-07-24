@@ -15,9 +15,19 @@ public class Fireball : MonoBehaviour
     {
         transform.position += Vector3.down * fallSpeed * Time.deltaTime;
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy Tower")
+        {
+            TowerHealth hp = other.gameObject.GetComponent<TowerHealth>();
+            if(hp != null )
+                Debug.Log(hp);
+            hp.TakeDamage(5);
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
+       
         if (!hasExploded && collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             hasExploded = true;

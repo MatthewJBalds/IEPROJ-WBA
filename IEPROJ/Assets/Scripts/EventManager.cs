@@ -21,7 +21,11 @@ public class EventManager : MonoBehaviour
 
     public static event Action<int> TrackHP;
 
+    public static event Action<int> TrackMaxHP;
+
     public static event Action<int> TrackMaxMana;
+
+    public static event Action<int> TrackDamage;
 
     private void Awake()
     {
@@ -72,9 +76,20 @@ public class EventManager : MonoBehaviour
     {
         TrackHP?.Invoke(i);
     }
-    
+
+    public static void trackMaxHP(int i)
+    {
+        TrackMaxHP?.Invoke(i);
+    }
+
     public static void trackMaxMana(int i)
     {
         TrackMaxMana?.Invoke(i);
     }
+
+    public static void trackDamage(int i)
+    {
+        TrackDamage?.Invoke(i);
+    }
+
 }

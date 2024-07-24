@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         //healthBar.setMaxHealth(currentHealth);
-        EventManager.trackHP(currentHealth);
+        EventManager.trackMaxHP(currentHealth);
         //healthBar.maxValue = maxHealth;
         //healthBar.value = currentHealth;
     }

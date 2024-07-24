@@ -13,13 +13,13 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        EventManager.TrackHP += setMaxHealth;
+        EventManager.TrackMaxHP += setMaxHealth;
         EventManager.TrackHP += setHealth;
     }
 
     private void OnDisable()
     {
-        EventManager.TrackHP -= setMaxHealth;
+        EventManager.TrackMaxHP -= setMaxHealth;
         EventManager.TrackHP -= setHealth;
     }
     public void setMaxHealth(int health)
