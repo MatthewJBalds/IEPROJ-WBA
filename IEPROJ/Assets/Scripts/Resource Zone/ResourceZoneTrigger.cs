@@ -10,6 +10,14 @@ public class ResourceZoneTrigger : MonoBehaviour
     public GameObject objectToSpawn; // Assign the prefab of the object to spawn in the Inspector
     public int spawnPoolSize = 10; // Number of objects to spawn in each pool
 
+
+
+    private void Start()
+    {
+        // Spawn the initial pool of objects
+        SpawnObjectPool();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // Check if the object that entered the trigger is the player
