@@ -10,6 +10,18 @@ public class ManaBar : MonoBehaviour
 
     private int maxMana;
     private int currentMana;
+
+    private void Start()
+    {
+        EventManager.TrackMaxMana += setMaxMana;
+        EventManager.TrackMana += setMana;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.TrackMaxMana -= setMaxMana;
+        EventManager.TrackMana -= setMana;
+    }
     public void setMaxMana(int mana)
     {
         maxMana = mana;

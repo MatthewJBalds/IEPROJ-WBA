@@ -10,6 +10,18 @@ public class HealthBar : MonoBehaviour
     public Text hpText;
 
     private int maxHealth;
+
+    private void Start()
+    {
+        EventManager.TrackHP += setMaxHealth;
+        EventManager.TrackHP += setHealth;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.TrackHP -= setMaxHealth;
+        EventManager.TrackHP -= setHealth;
+    }
     public void setMaxHealth(int health)
     {
         maxHealth = health;

@@ -874,7 +874,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthBar: {fileID: 0}
 --- !u!1 &3912602959082510198
 GameObject:
   m_ObjectHideFlags: 0
@@ -2239,7 +2238,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manaPool: 0
-  manaBar: {fileID: 0}
 --- !u!114 &8563826585385295702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2253,7 +2251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthBar: {fileID: 0}
 --- !u!114 &7876227013052445247
 MonoBehaviour:
   m_ObjectHideFlags: 0

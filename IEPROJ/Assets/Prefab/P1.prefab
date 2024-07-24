@@ -1997,7 +1997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manaPool: 0
-  manaBar: {fileID: 0}
+  manaBar: {fileID: 9100018018003929965, guid: a70e43fcffc07614d93e0637ee642b88, type: 3}
 --- !u!114 &5177027342105764420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2011,7 +2011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 2305332557342358227, guid: b049d7f3d5e624b43a98b95d76f156c3, type: 3}
 --- !u!114 &6256598760736934919
 MonoBehaviour:
   m_ObjectHideFlags: 0

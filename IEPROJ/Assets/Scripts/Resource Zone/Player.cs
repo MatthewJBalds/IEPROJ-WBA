@@ -6,7 +6,7 @@ using Photon.Pun;
 public class Player : MonoBehaviour
 {
     public int manaPool = 0; // The player's mana pool
-    public ManaBar manaBar;
+    //public ManaBar manaBar;
 
     //PhotonView view;
 
@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         EventManager.UseMana += RemoveMana;
-        manaBar.setMaxMana(manaPool);
+        EventManager.trackMaxMana(manaPool);
+        //manaBar.setMaxMana(manaPool);
         //view = GetComponent<PhotonView>();
     }
     private void Update()
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
     public void AddMana(int amount)
     {
         manaPool += amount;
-        manaBar.setMana(manaPool);
+        //manaBar.setMana(manaPool);
         Debug.Log("Mana added. Current mana: " + manaPool);
     }
 
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
         {
             manaPool = 0;
         }
-        manaBar.setMana(manaPool);
+        //manaBar.setMana(manaPool);
         Debug.Log("Mana removed. Current mana: " + manaPool);
     }
 }
