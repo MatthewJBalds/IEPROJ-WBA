@@ -4,11 +4,11 @@ using UnityEngine;
 
 public enum GameState
 {
-    PLAYER_TURN,
-    ENEMY_TURN,
+    PLAY,
     PAUSE,
     VICTORY,
     LOSE,
+    TIE,
     NONE
 
 }

@@ -27,6 +27,9 @@ public class EventManager : MonoBehaviour
 
     public static event Action<int> TrackDamage;
 
+    public static event Action<GameState> UpdateState;
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -90,6 +93,11 @@ public class EventManager : MonoBehaviour
     public static void trackDamage(int i)
     {
         TrackDamage?.Invoke(i);
+    }
+
+    public static void updateState(GameState s)
+    {
+        UpdateState?.Invoke(s);
     }
 
 }

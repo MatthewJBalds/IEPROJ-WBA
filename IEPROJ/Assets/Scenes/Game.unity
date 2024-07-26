@@ -1569,6 +1569,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07dbee6a82d600d4ab526e58b2e0264f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TowerHealthList:
+  - {fileID: 3105312689721750385}
+  - {fileID: 8912549433327556110}
+  - {fileID: 8912549434036037095}
+  EnemyTowerHealthList:
+  - {fileID: 3105312688630976200}
+  - {fileID: 8912549433535513796}
+  - {fileID: 8912549434288636285}
 --- !u!4 &474828411
 Transform:
   m_ObjectHideFlags: 0
@@ -11644,6 +11652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   healthBar: {fileID: 1645662930}
 --- !u!65 &3105312688630976201
 BoxCollider:
@@ -11696,6 +11705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   healthBar: {fileID: 438627992}
 --- !u!65 &3105312689721750386
 BoxCollider:
@@ -15767,6 +15777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 80
+  currentHealth: 0
   healthBar: {fileID: 1653055255}
 --- !u!65 &8912549433327556111
 BoxCollider:
@@ -15820,6 +15831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 80
+  currentHealth: 0
   healthBar: {fileID: 357057910}
 --- !u!65 &8912549433535513797
 BoxCollider:
@@ -15873,6 +15885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  currentHealth: 0
   healthBar: {fileID: 1730533649}
 --- !u!65 &8912549434036037096
 BoxCollider:
@@ -15926,6 +15939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  currentHealth: 0
   healthBar: {fileID: 2125559091}
 --- !u!65 &8912549434288636286
 BoxCollider:

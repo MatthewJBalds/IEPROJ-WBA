@@ -11,10 +11,8 @@ public class Timer : MonoBehaviour
     private Text timeText;
     private float timeValue = 180f;
 
-
     private void Start()
     {
-        EventManager.EndTimer += EndGame;
     }
     // Update is called once per frame
     void Update()
@@ -35,7 +33,24 @@ public class Timer : MonoBehaviour
     private void EndGame(float timeValue)
     {
         if(timeValue == 0)
-            SceneManager.LoadScene("StartScreen");//PUT END SCREEN
+        {
+            if(TowerManager.Instance.totalEnemyTowerHealth > TowerManager.Instance.totalTowerHealth)
+            {
+                GameManager.Instance.UpdateGameState(GameState.LOSE);
+            }
+            else if(TowerManager.Instance.totalEnemyTowerHealth < TowerManager.Instance.totalTowerHealth)
+            {
+                GameManager.Instance.UpdateGameState(GameState.VICTORY);
+            }
+            else if(TowerManager.Instance.totalEnemyTowerHealth == TowerManager.Instance.totalTowerHealth)
+            {
+                GameManager.Instance.UpdateGameState(GameState.TIE);
+
+            }
+
+
+        }
+            //PUT END SCREEN
     }
     private void DisplayTime(float timeValueToDisplay)
     {
