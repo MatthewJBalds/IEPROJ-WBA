@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth = 10;
     private int currentHealth;
-    private bool isRespawned = false;
 
     public HealthBar healthBar;
     [SerializeField]
@@ -43,26 +42,26 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        if (!isRespawned)
-        {
-            StartCoroutine(Respawn());
-            isRespawned = false;
-        }
-
-        this.gameObject.transform.position = spawnPoint.position;
-        this.gameObject.SetActive(true);
-        currentHealth = maxHealth;
-        healthBar.setMaxHealth(currentHealth) ;
-
+        StartCoroutine(Respawn());
+        Debug.Log("Respawn End");
         //Handle player death (e.g., respawn, game over)
         Debug.Log("Player Died");
     }
 
     IEnumerator Respawn()
     {
-        this.gameObject.SetActive(false);
+        Debug.Log("Respawn Start");
+
+        this.healthBar.gameObject.SetActive(false);
+        currentHealth = maxHealth;
+        healthBar.setMaxHealth(currentHealth);
+
         yield return new WaitForSeconds(5);
-        isRespawned = true;
+
+        this.gameObject.transform.position = spawnPoint.position;
+        this.healthBar.gameObject.SetActive(true);
+
+        Debug.Log("Respawn End");
     }
 
 }

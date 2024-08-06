@@ -38,9 +38,12 @@ public class HealthBar : MonoBehaviour
     }
     private void Update()
     {
+
         Vector3 position = transform.position;
         position.x = player.position.x;
+        position.y = player.position.y + 3f;
         position.z = player.position.z;
         transform.position = position;
+     
     }
 }
