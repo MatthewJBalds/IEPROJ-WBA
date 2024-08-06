@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     public GameObject fireballPrefab;
+    public GameObject skeletonPrefab;
     public LayerMask groundLayer;
     public float spawnHeight = 10.0f;
 
@@ -49,7 +50,7 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
             Debug.Log("Mana: " + manaPool);
             Debug.Log("Cost: " + this.gameObject.GetComponent<DisplayCard>().displayCost);
             int cost = this.gameObject.GetComponent<DisplayCard>().displayCost;
-            
+
             if (this.manaPool >= cost)
             {
                 switch (id)
@@ -59,7 +60,7 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
                         EventManager.ReduceMana(cost);
                         break;
                     case 1:
-                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
+                        Instantiate(skeletonPrefab, spawnPosition, Quaternion.identity);
                         EventManager.ReduceMana(cost);
                         break;
                     case 2:
@@ -79,20 +80,20 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
                         EventManager.ReduceMana(cost);
                         break;
                     case 6:
-                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);             
+                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
                         EventManager.ReduceMana(cost);
                         break;
                     case 7:
-                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);                 
+                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
                         EventManager.ReduceMana(cost);
                         break;
                 }
-                
 
-                
+
+
             }
 
-          
+
             DeckManager.deckSize += 1;
             EventManager.DrawCards();
             EventManager.MoveCardToBottom(id);
@@ -100,8 +101,8 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
         }
 
-       
-        
+
+
     }
 
     private bool TryGetWorldPosition(Vector2 screenPosition, out Vector3 worldPosition)

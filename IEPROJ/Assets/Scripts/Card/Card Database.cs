@@ -11,8 +11,8 @@ public class CardDatabase : MonoBehaviour
     void Awake()
     {
         CardsDatabase.Add(new Card(0, 5,"Spell","N/A","Fireball", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(1, 1, "Spell", "N/A", "Card2", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(2, 1,"Summon", "N/A", "Card3", Resources.Load<Sprite>("tree")));
+        CardsDatabase.Add(new Card(1, 10, "Summon", "N/A", "Skeletons", Resources.Load<Sprite>("tree")));
+        CardsDatabase.Add(new Card(2, 20,"Summon", "N/A", "Spell Turret", Resources.Load<Sprite>("tree")));
         CardsDatabase.Add(new Card(3, 1,"Spell", "N/A", "Card4", Resources.Load<Sprite>("tree")));
         CardsDatabase.Add(new Card(4, 1, "Summon", "N/A", "Card5", Resources.Load<Sprite>("tree")));
         CardsDatabase.Add(new Card(5, 1, "Spell", "N/A", "Card6", Resources.Load<Sprite>("tree")));
