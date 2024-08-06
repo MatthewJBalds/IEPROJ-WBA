@@ -662,8 +662,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 8576876575957950162, guid: b2d197c7694ffb246ae9e80efe4440ef, type: 3}
+  skeletonPrefab: {fileID: 8834429078745824561, guid: 64a065bd66b80ec4c9fe1f90d0d24bb7, type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   spawnHeight: 10
-  player: {fileID: 3244372936078224071, guid: 14d7adab1c8a5464eb3fbcbdb173c657, type: 3}
