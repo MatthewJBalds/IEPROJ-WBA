@@ -1,57 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
+public class Timer : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private Text timeText;
     private float timeValue = 180f;
+    private bool timerStarted = false;
 
     private void Start()
     {
     }
-    // Update is called once per frame
+
     void Update()
     {
-        if(timeValue > 0)
+        // Check if there are exactly 2 players in the room and the timer hasn't started yet
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && !timerStarted)
         {
-            timeValue -= Time.deltaTime;
-        }
-        else
-        {
-            timeValue = 0;
+            timerStarted = true; // Start the timer
         }
 
-        DisplayTime(timeValue);
-        EndGame(timeValue);
+        if (timerStarted)
+        {
+            if (timeValue > 0)
+            {
+                timeValue -= Time.deltaTime;
+            }
+            else
+            {
+                timeValue = 0;
+            }
 
+            DisplayTime(timeValue);
+            EndGame(timeValue);
+        }
     }
+
     private void EndGame(float timeValue)
     {
-        if(timeValue == 0)
+        if (timeValue == 0)
         {
-            if(TowerManager.Instance.totalEnemyTowerHealth > TowerManager.Instance.totalTowerHealth)
+            if (TowerManager.Instance.totalEnemyTowerHealth > TowerManager.Instance.totalTowerHealth)
             {
                 GameManager.Instance.UpdateGameState(GameState.LOSE);
             }
-            else if(TowerManager.Instance.totalEnemyTowerHealth < TowerManager.Instance.totalTowerHealth)
+            else if (TowerManager.Instance.totalEnemyTowerHealth < TowerManager.Instance.totalTowerHealth)
             {
                 GameManager.Instance.UpdateGameState(GameState.VICTORY);
             }
-            else if(TowerManager.Instance.totalEnemyTowerHealth == TowerManager.Instance.totalTowerHealth)
+            else if (TowerManager.Instance.totalEnemyTowerHealth == TowerManager.Instance.totalTowerHealth)
             {
                 GameManager.Instance.UpdateGameState(GameState.TIE);
-
             }
 
-
-        }
             //PUT END SCREEN
+        }
     }
+
     private void DisplayTime(float timeValueToDisplay)
     {
         float minutes = Mathf.FloorToInt(timeValueToDisplay / 60f);
