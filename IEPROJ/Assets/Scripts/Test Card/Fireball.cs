@@ -24,6 +24,14 @@ public class Fireball : MonoBehaviour
                 Debug.Log(hp);
             hp.TakeDamage(5);
         }
+        if(other.tag == "Enemy")
+        {
+            PlayerHealth hp = other.gameObject.GetComponent<PlayerHealth>();
+
+            if (hp != null)
+                Debug.Log(hp);
+            hp.TakeDamage(5);
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
