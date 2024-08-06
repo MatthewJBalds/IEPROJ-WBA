@@ -8,6 +8,7 @@ public class HealthBar : MonoBehaviour
 
     public Slider slider;
     public Text hpText;
+    [SerializeField] private Transform player;
 
     private int maxHealth;
 
@@ -33,5 +34,12 @@ public class HealthBar : MonoBehaviour
     {
         hpText.text = string.Format("{0:0}/{1:0}", health, maxHealth);
         this.slider.value = health;
+    }
+    private void Update()
+    {
+        Vector3 position = transform.position;
+        position.x = player.position.x;
+        position.z = player.position.z;
+        transform.position = position;
     }
 }
