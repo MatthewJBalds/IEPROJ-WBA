@@ -15,12 +15,16 @@ public class Timer : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        if (SceneManager.GetActiveScene().name == "Offline Mode")
+        {
+            timerStarted =true;
+        }
     }
 
     void Update()
     {
-        // Check if there are exactly 2 players in the room and the timer hasn't started yet
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && !timerStarted)
+        //Check if there are exactly 2 players in the room and the timer hasn't started yet
+        if (!timerStarted && PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             timerStarted = true; // Start the timer
         }
