@@ -9,6 +9,7 @@ public class CameraMovement : MonoBehaviour
         // Get the input from the "W" and "S" keys
         float moveDirection = Input.GetAxis("Vertical");
 
+        
         // Calculate the movement direction in world space
         Vector3 move = Vector3.back * moveDirection;
 

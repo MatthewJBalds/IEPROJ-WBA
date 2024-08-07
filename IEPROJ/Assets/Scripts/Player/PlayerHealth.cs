@@ -6,7 +6,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 10;
+    public int maxHealth = 100;
     private int currentHealth;
 
     public HealthBar healthBar;
@@ -61,11 +61,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.setMaxHealth(currentHealth);
 
-
         yield return new WaitForSeconds(5);
 
-        this.gameObject.transform.position = spawnPoint.position;
+        this.gameObject.transform.parent.position = spawnPoint.position;
         this.healthBar.gameObject.SetActive(true);
+
         if (this.tag == "Player")
         {
             this.GetComponentInParent<ThirdPersonUserControl>().enabled = true;

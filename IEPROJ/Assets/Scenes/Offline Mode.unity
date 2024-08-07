@@ -7779,7 +7779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152ad35c6f3811d488d3c781cd59a802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 100
   healthBar: {fileID: 6511383151171073272}
   spawnPoint: {fileID: 583750454}
 --- !u!224 &1967718321 stripped
@@ -28317,6 +28317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d550f71ac2783184aac02d2727885dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 4436351344929051296}
   speed: 2
 --- !u!114 &9067727226273489972
 MonoBehaviour:
