@@ -10,14 +10,14 @@ public class CardDatabase : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        CardsDatabase.Add(new Card(0, 5,"Spell","N/A","Fireball", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(1, 10, "Summon", "N/A", "Skeletons", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(2, 20,"Summon", "N/A", "Spell Turret", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(3, 5, "Spell", "N/A", "Fireball", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(4, 10, "Summon", "N/A", "Skeletons", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(5, 20, "Summon", "N/A", "Spell Turret", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(6, 5, "Spell", "N/A", "Fireball", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(7, 20, "Summon", "N/A", "Spell Turret", Resources.Load<Sprite>("tree")));
+        CardsDatabase.Add(new Card(0, 5,"Spell","N/A","Fireball", Resources.Load<Sprite>("Fireball")));
+        CardsDatabase.Add(new Card(1, 10, "Summon", "N/A", "Skeletons", Resources.Load<Sprite>("skely")));
+        CardsDatabase.Add(new Card(2, 20,"Summon", "N/A", "Spell Turret", Resources.Load<Sprite>("turret")));
+        CardsDatabase.Add(new Card(3, 5, "Spell", "N/A", "Fireball", Resources.Load<Sprite>("Fireball")));
+        CardsDatabase.Add(new Card(4, 10, "Summon", "N/A", "Skeletons", Resources.Load<Sprite>("skely")));
+        CardsDatabase.Add(new Card(5, 20, "Summon", "N/A", "Spell Turret", Resources.Load<Sprite>("turret")));
+        CardsDatabase.Add(new Card(6, 5, "Spell", "N/A", "Fireball", Resources.Load<Sprite>("Fireball")));
+        CardsDatabase.Add(new Card(7, 5, "Spell", "N/A", "Fireball", Resources.Load<Sprite>("Fireball")));
 
     }
 
