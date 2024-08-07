@@ -5,6 +5,7 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     public GameObject fireballPrefab;
     public GameObject skeletonPrefab;
+    public GameObject towerPrefab;
     public LayerMask groundLayer;
     public float spawnHeight = 10.0f;
 
@@ -64,7 +65,7 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
                         EventManager.ReduceMana(cost);
                         break;
                     case 2:
-                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
+                        Instantiate(towerPrefab, spawnPosition, Quaternion.identity);
                         EventManager.ReduceMana(cost);
                         break;
                     case 3:
@@ -72,19 +73,20 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
                         EventManager.ReduceMana(cost);
                         break;
                     case 4:
-                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
+                        Instantiate(skeletonPrefab, spawnPosition, Quaternion.identity);
                         EventManager.ReduceMana(cost);
                         break;
                     case 5:
-                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
+                        Instantiate(towerPrefab, spawnPosition, Quaternion.identity);
                         EventManager.ReduceMana(cost);
                         break;
+            
                     case 6:
                         Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
                         EventManager.ReduceMana(cost);
                         break;
                     case 7:
-                        Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
+                        Instantiate(skeletonPrefab, spawnPosition, Quaternion.identity);
                         EventManager.ReduceMana(cost);
                         break;
                 }
