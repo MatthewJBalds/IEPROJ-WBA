@@ -17,6 +17,8 @@ public class EventManager : MonoBehaviour
 
     public static event Action<int> UseMana;
 
+    public static event Action<int> UseEnemyMana;
+
     public static event Action<int> TrackMana;
 
     public static event Action<int> TrackHP;
@@ -28,6 +30,8 @@ public class EventManager : MonoBehaviour
     public static event Action<int> TrackDamage;
 
     public static event Action<GameState> UpdateState;
+
+    public static event Action ManaCollected;
 
 
     private void Awake()
@@ -70,6 +74,12 @@ public class EventManager : MonoBehaviour
         UseMana?.Invoke(i);
     }
 
+    public static void ReduceEnemyMana(int i)
+    {
+        UseEnemyMana?.Invoke(i);
+    }
+
+
     public static void trackMana(int i)
     {
         TrackMana?.Invoke(i);
@@ -98,6 +108,11 @@ public class EventManager : MonoBehaviour
     public static void updateState(GameState s)
     {
         UpdateState?.Invoke(s);
+    } 
+    
+    public static void manaCollected()
+    {
+        ManaCollected?.Invoke();
     }
 
 }

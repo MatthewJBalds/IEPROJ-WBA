@@ -1,27 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ResourceZoneTrigger : MonoBehaviour
 {
+    public static ResourceZoneTrigger instance;
     private bool isPlayerInside = false;
     private int numSpawned = 0; // Number of mana objects spawned in the current batch
     private bool isFirstSpawn = true; // Flag to check if it's the first spawn
     public GameObject objectToSpawn; // Assign the prefab of the object to spawn in the Inspector
     public int spawnPoolSize = 10; // Number of objects to spawn in each pool
-
+    public List<GameObject> spawnPool = new List<GameObject>();
 
 
     private void Start()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+        EventManager.ManaCollected += ManaObjectCollected;
         // Spawn the initial pool of objects
         SpawnObjectPool();
+    }
+    private void OnDisable()
+    {
+        EventManager.ManaCollected -= ManaObjectCollected;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.tag);
         // Check if the object that entered the trigger is the player
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") || other.tag == "Enemy")
         {
             Debug.Log("Player entered the trigger zone.");
             isPlayerInside = true;
@@ -37,7 +49,7 @@ public class ResourceZoneTrigger : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // Check if the object that exited the trigger is the player
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") || other.tag == "Enemy")
         {
             Debug.Log("Player exited the trigger zone.");
             isPlayerInside = false;
@@ -66,7 +78,8 @@ public class ResourceZoneTrigger : MonoBehaviour
             for (int i = 0; i < spawnPoolSize; i++)
             {
                 Vector3 randomPosition = GetRandomPositionInZone();
-                Instantiate(objectToSpawn, randomPosition, Quaternion.identity);
+                GameObject spawn = Instantiate(objectToSpawn, randomPosition, Quaternion.identity);
+                spawnPool.Add(spawn);
             }
             numSpawned = 0; // Reset spawned count for the new batch
         }
@@ -79,6 +92,7 @@ public class ResourceZoneTrigger : MonoBehaviour
     public void ManaObjectCollected()
     {
         numSpawned++;
+        spawnPool = spawnPool.Where(spawn => spawn != null).ToList();
         Debug.Log("Mana object collected. Count: " + numSpawned);
 
         // Check if all mana objects in the current batch have been collected

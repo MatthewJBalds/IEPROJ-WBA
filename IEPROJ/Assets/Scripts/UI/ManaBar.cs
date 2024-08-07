@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ManaBar : MonoBehaviour
 {
-    public Slider slider;
     public Text manaText;
 
     private int maxMana;
@@ -26,9 +25,7 @@ public class ManaBar : MonoBehaviour
     {
         maxMana = mana;
         currentMana = mana;
-        manaText.text = string.Format("{0:0}/{1:0}", mana, maxMana);
-        this.slider.maxValue = mana;
-        this.slider.value = mana;
+        manaText.text = currentMana.ToString();
     }
     public void setMana(int mana)
     {
@@ -36,10 +33,8 @@ public class ManaBar : MonoBehaviour
         if (currentMana >= maxMana)
         {
             maxMana = currentMana;
-            this.slider.maxValue = mana;
         }
-        manaText.text = string.Format("{0:0}/{1:0}", mana, maxMana);
+        manaText.text = currentMana.ToString();
         
-        this.slider.value = mana;
     }
 }

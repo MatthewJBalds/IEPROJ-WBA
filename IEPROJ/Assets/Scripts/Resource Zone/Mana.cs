@@ -8,12 +8,22 @@ public class Collectible : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") || other.tag == "Enemy")
         {
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
                 player.AddMana(manaValue);
+                EventManager.manaCollected();
+                Destroy(gameObject);
+            }
+            Debug.Log("No Player");
+            EnemyMana enemy = other.GetComponent<EnemyMana>();
+            if(enemy != null) 
+            {
+                Debug.Log("Collect");
+                enemy.AddMana(manaValue);
+                EventManager.manaCollected();
                 Destroy(gameObject);
             }
         }

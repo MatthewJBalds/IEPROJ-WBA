@@ -32,6 +32,22 @@ public class Fireball : MonoBehaviour
                 Debug.Log(hp);
             hp.TakeDamage(5);
         }
+
+        if (other.tag == "Player Tower")
+        {
+            TowerHealth hp = other.gameObject.GetComponent<TowerHealth>();
+            if (hp != null)
+                Debug.Log(hp);
+            hp.TakeDamage(5);
+        }
+        if (other.tag == "Player")
+        {
+            PlayerHealth hp = other.gameObject.GetComponent<PlayerHealth>();
+
+            if (hp != null)
+                Debug.Log(hp);
+            hp.TakeDamage(5);
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
