@@ -11,8 +11,11 @@ public class AICollectState : AIBaseState
     private int number;
     private int index = 0;
     private EnemyMana mana;
+    private PlayerHealth health;
+
     public override void EnterState(AIStateManager aIState)
     {
+        health = aIState.GetComponent<PlayerHealth>();
         mana = aIState.GetComponentInChildren<EnemyMana>();
         collectables = ResourceZoneTrigger.instance.spawnPool;
         Debug.Log("Collect: " + collectables.Count);
@@ -45,6 +48,11 @@ public class AICollectState : AIBaseState
             aIState.transform.position = Vector3.MoveTowards(aIState.transform.position, collectables[number].transform.position, speed * Time.deltaTime);
             aIState.transform.forward = collectables[number].transform.position - aIState.transform.position;
             
+        }
+
+        if (health.CurrentHealth == 0)
+        {
+            aIState.SwitchState(aIState.deadState);
         }
         //if (Vector3.Distance(aIState.transform.position, target.position) > 1.0f)
         //{

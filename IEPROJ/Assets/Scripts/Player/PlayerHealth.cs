@@ -2,6 +2,7 @@ using Photon.Pun;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -52,16 +53,29 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Respawn Start");
 
+        if(this.tag == "Player")
+        {
+            this.GetComponentInParent<ThirdPersonUserControl>().enabled = false;
+        }
         this.healthBar.gameObject.SetActive(false);
         currentHealth = maxHealth;
         healthBar.setMaxHealth(currentHealth);
+
 
         yield return new WaitForSeconds(5);
 
         this.gameObject.transform.position = spawnPoint.position;
         this.healthBar.gameObject.SetActive(true);
-
+        if (this.tag == "Player")
+        {
+            this.GetComponentInParent<ThirdPersonUserControl>().enabled = true;
+        }
         Debug.Log("Respawn End");
+    }
+
+    public int CurrentHealth
+    {
+        get { return currentHealth; }
     }
 
 }

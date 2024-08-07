@@ -15,6 +15,7 @@ public class AIStateManager : MonoBehaviour
     public AIMoveToCenterState moveState = new AIMoveToCenterState();
     public AICollectState collectState = new AICollectState();
     public AIOffenseState offenseState = new AIOffenseState();
+    public AIDeadState deadState = new AIDeadState();
 
     // Start is called before the first frame update
     private void Start()
