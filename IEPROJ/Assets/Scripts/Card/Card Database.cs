@@ -13,11 +13,11 @@ public class CardDatabase : MonoBehaviour
         CardsDatabase.Add(new Card(0, 5,"Spell","N/A","Fireball", Resources.Load<Sprite>("tree")));
         CardsDatabase.Add(new Card(1, 10, "Summon", "N/A", "Skeletons", Resources.Load<Sprite>("tree")));
         CardsDatabase.Add(new Card(2, 20,"Summon", "N/A", "Spell Turret", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(3, 1,"Spell", "N/A", "Card4", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(4, 1, "Summon", "N/A", "Card5", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(5, 1, "Spell", "N/A", "Card6", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(6, 1, "Summon", "N/A", "Card7", Resources.Load<Sprite>("tree")));
-        CardsDatabase.Add(new Card(7, 1, "Spell", "N/A", "Card8", Resources.Load<Sprite>("tree")));
+        CardsDatabase.Add(new Card(3, 5, "Spell", "N/A", "Fireball", Resources.Load<Sprite>("tree")));
+        CardsDatabase.Add(new Card(4, 10, "Summon", "N/A", "Skeletons", Resources.Load<Sprite>("tree")));
+        CardsDatabase.Add(new Card(5, 20, "Summon", "N/A", "Spell Turret", Resources.Load<Sprite>("tree")));
+        CardsDatabase.Add(new Card(6, 5, "Spell", "N/A", "Fireball", Resources.Load<Sprite>("tree")));
+        CardsDatabase.Add(new Card(7, 20, "Summon", "N/A", "Spell Turret", Resources.Load<Sprite>("tree")));
 
     }
 
