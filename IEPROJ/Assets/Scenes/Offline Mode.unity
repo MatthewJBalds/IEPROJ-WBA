@@ -983,7 +983,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 380018227}
-  - component: {fileID: 380018226}
   m_Layer: 0
   m_Name: --------SpawnPoints-------
   m_TagString: Untagged
@@ -991,22 +990,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &380018226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 380018225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70971244a33420445bd39bad00008926, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefabP1: {fileID: 4436351345407457123, guid: d4d0bbaf0cb14f9448cb8b6de39239f8, type: 3}
-  playerPrefabP2: {fileID: 2271658530135420302, guid: 8c04cecf6e701fc498acc0a76eca7ee2, type: 3}
-  spawnPointP1: {fileID: 583750454}
-  spawnPointP2: {fileID: 915148848}
 --- !u!4 &380018227
 Transform:
   m_ObjectHideFlags: 0
@@ -28334,7 +28317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d550f71ac2783184aac02d2727885dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2
 --- !u!114 &9067727226273489972
 MonoBehaviour:
   m_ObjectHideFlags: 0
